@@ -1,4 +1,6 @@
-# tf\_fastly\_routing\_config
+# tf\_fastly\_routing\_config terraform module
+
+[![Build Status](https://travis-ci.org/mergermarket/tf_fastly_routing_config.svg?branch=master)](https://travis-ci.org/mergermarket/tf_fastly_routing_config)
 
 This module is for generating fastly routing config for inclusion in a custom
 VCL file. This is mainly useful for use building up the `custom_vcl_backends`
