@@ -30,6 +30,7 @@ class TestConfigGeneration(unittest.TestCase):
 
 
     def test_vcl_recv(self):
+        raise Exception('test failure')
         self.assertRegexpMatches(
             self.output,
             re.compile(optional_whitespace(r'''
