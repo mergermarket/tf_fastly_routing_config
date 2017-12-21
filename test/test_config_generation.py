@@ -45,7 +45,7 @@ class TestConfigGeneration(unittest.TestCase):
         self.assertRegexpMatches(
             self.output,
             re.compile(optional_whitespace(r'''
-                defaults_backend =
+                defaults_vcl_backend =
                 backend test-backend \{
                     \.connect_timeout = 5s ;
                     \.first_byte_timeout = 20s ;
@@ -72,7 +72,7 @@ class TestConfigGeneration(unittest.TestCase):
         self.assertRegexpMatches(
             self.output,
             re.compile(optional_whitespace(r'''
-                ssl_ca_cert_backend =
+                ssl_ca_cert_vcl_backend =
                 backend dummy-backend \{
                     \.connect_timeout = 5s ;
                     \.first_byte_timeout = 20s ;
@@ -100,7 +100,7 @@ class TestConfigGeneration(unittest.TestCase):
         self.assertRegexpMatches(
             self.output,
             re.compile(optional_whitespace(r'''
-                ssl_check_cert_backend =
+                ssl_check_cert_vcl_backend =
                 backend dummy-backend \{
                     \.connect_timeout = 5s ;
                     \.first_byte_timeout = 20s ;

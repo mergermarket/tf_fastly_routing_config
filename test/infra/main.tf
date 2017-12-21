@@ -16,8 +16,8 @@ output "defaults_vcl_recv" {
   value = "${module.defaults.vcl_recv}"
 }
 
-output "defaults_backend" {
-  value = "${module.defaults.backend}"
+output "defaults_vcl_backend" {
+  value = "${module.defaults.vcl_backend}"
 }
 
 # ssl_ca_cert
@@ -32,8 +32,8 @@ module "ssl_ca_cert" {
   ssl_ca_cert  = "${var.ssl_ca_cert}"
 }
 
-output "ssl_ca_cert_backend" {
-  value = "${module.ssl_ca_cert.backend}"
+output "ssl_ca_cert_vcl_backend" {
+  value = "${module.ssl_ca_cert.vcl_backend}"
 }
 
 # ssl_check_cert never
@@ -48,7 +48,6 @@ module "ssl_check_cert" {
   ssl_check_cert  = "${var.ssl_check_cert}"
 }
 
-output "ssl_check_cert_backend" {
-  value = "${module.ssl_check_cert.backend}"
+output "ssl_check_cert_vcl_backend" {
+  value = "${module.ssl_check_cert.vcl_backend}"
 }
-

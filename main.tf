@@ -11,7 +11,7 @@ END
   }
 }
 
-data "template_file" "backend" {
+data "template_file" "vcl_backend" {
   template = <<END
         backend $${backend_name} {
             .connect_timeout = $${connect_timeout};
