@@ -14,6 +14,12 @@ variable "connect_timeout" {
   default     = "5s"
 }
 
+variable "dynamic" {
+  description = ""
+  type        = "string"
+  default     = "true"
+}
+
 variable "first_byte_timeout" {
   description = ""
   type        = "string"
@@ -29,7 +35,7 @@ variable "between_bytes_timeout" {
 variable "max_connections" {
   description = ""
   type        = "string"
-  default     = "1024"
+  default     = "1000"
 }
 
 variable "backend_port" {

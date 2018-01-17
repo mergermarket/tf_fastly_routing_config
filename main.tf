@@ -15,6 +15,7 @@ data "template_file" "vcl_backend" {
   template = <<END
         backend $${backend_name} {
             .connect_timeout = $${connect_timeout};
+            .dynamic = $${dynamic};
             .first_byte_timeout = $${first_byte_timeout};
             .between_bytes_timeout = $${between_bytes_timeout};
             .max_connections = $${max_connections};
@@ -41,6 +42,7 @@ END
     backend_name          = "${var.backend_name}"
     first_byte_timeout    = "${var.first_byte_timeout}"
     connect_timeout       = "${var.connect_timeout}"
+    dynamic               = "${var.dynamic}"
     between_bytes_timeout = "${var.between_bytes_timeout}"
     max_connections       = "${var.max_connections}"
     backend_port          = "${var.backend_port}"

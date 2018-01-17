@@ -30,7 +30,6 @@ class TestConfigGeneration(unittest.TestCase):
 
 
     def test_vcl_recv(self):
-        raise Exception('test failure')
         self.assertRegexpMatches(
             self.output,
             re.compile(optional_whitespace(r'''
@@ -49,9 +48,10 @@ class TestConfigGeneration(unittest.TestCase):
                 defaults_vcl_backend =
                 backend test-backend \{
                     \.connect_timeout = 5s ;
+                    \.dynamic = true ;
                     \.first_byte_timeout = 20s ;
                     \.between_bytes_timeout = 20s ;
-                    \.max_connections = 1024 ;
+                    \.max_connections = 1000 ;
                     \.port = "443" ;
                     \.host = "test-host" ;
                     \.ssl = true ;
@@ -76,9 +76,10 @@ class TestConfigGeneration(unittest.TestCase):
                 ssl_ca_cert_vcl_backend =
                 backend dummy-backend \{
                     \.connect_timeout = 5s ;
+                    \.dynamic = true ;
                     \.first_byte_timeout = 20s ;
                     \.between_bytes_timeout = 20s ;
-                    \.max_connections = 1024 ;
+                    \.max_connections = 1000 ;
                     \.port = "443" ;
                     \.host = "dummy-host" ;
                     \.ssl = true ;
@@ -104,9 +105,10 @@ class TestConfigGeneration(unittest.TestCase):
                 ssl_check_cert_vcl_backend =
                 backend dummy-backend \{
                     \.connect_timeout = 5s ;
+                    \.dynamic = true ;
                     \.first_byte_timeout = 20s ;
                     \.between_bytes_timeout = 20s ;
-                    \.max_connections = 1024 ;
+                    \.max_connections = 1000 ;
                     \.port = "443" ;
                     \.host = "dummy-host" ;
                     \.ssl = true ;
