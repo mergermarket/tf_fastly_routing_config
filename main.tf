@@ -2,6 +2,11 @@ data "template_file" "vcl_recv" {
   template = <<END
         if ($${vcl_recv_condition}) {
             set req.backend = $${backend_name};
+            if (req.request == "HEAD" || req.request == "GET" || req.request == "FASTLYPURGE") {
+                return(lookup);
+            else {
+                return(pass);
+            }
         }
 END
 
