@@ -33,6 +33,7 @@ data "template_file" "vcl_backend" {
                 .timeout = $${probe_timeout};
                 .initial = $${probe_initial};
                 .interval = $${probe_interval};
+                $${dummy}
             }
         }
 END
@@ -49,10 +50,10 @@ END
     backend_host          = "${var.backend_host}"
 
     ssl_ca_cert_section   = "${
-            var.ssl_ca_cert == "" ? "" : join("", list("
-                .ssl_ca_cert = {\"", var.ssl_ca_cert, "\"};
-            "))
-        }"
+        var.ssl_ca_cert == "" ? "" : join("", list("
+            .ssl_ca_cert = {\"", var.ssl_ca_cert, "\"};
+        "))
+    }"
 
     ssl_check_cert        = "${var.ssl_check_cert}"
 
@@ -62,5 +63,6 @@ END
     probe_interval        = "${var.probe_interval}"
     probe_initial         = "${var.probe_initial}"
     healthcheck_path      = "${var.healthcheck_path}"
+    dummy                 = "${var.probe_enabled ? "" : ".dummy = true;"}"
   }
 }
