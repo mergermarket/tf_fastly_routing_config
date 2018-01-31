@@ -27,12 +27,12 @@ data "template_file" "vcl_backend" {
             $${ssl_ca_cert_section}
             .ssl_check_cert = $${ssl_check_cert};
             .probe = {
-                .request = "HEAD /internal/healthcheck HTTP/1.1" "Connection: close";
+                .request = "HEAD $${healthcheck_path} HTTP/1.1" "Connection: close";
                 .window = $${probe_window};
                 .threshold = $${probe_threshold};
                 .timeout = $${probe_timeout};
                 .initial = $${probe_initial};
-                .dummy = true;
+                .interval = $${probe_interval};
             }
         }
 END
@@ -48,17 +48,19 @@ END
     backend_port          = "${var.backend_port}"
     backend_host          = "${var.backend_host}"
 
-    ssl_ca_cert_section = "${
+    ssl_ca_cert_section   = "${
             var.ssl_ca_cert == "" ? "" : join("", list("
                 .ssl_ca_cert = {\"", var.ssl_ca_cert, "\"};
             "))
         }"
 
-    ssl_check_cert = "${var.ssl_check_cert}"
+    ssl_check_cert        = "${var.ssl_check_cert}"
 
-    probe_window    = "${var.probe_window}"
-    probe_threshold = "${var.probe_threshold}"
-    probe_timeout   = "${var.probe_timeout}"
-    probe_initial   = "${var.probe_initial}"
+    probe_window          = "${var.probe_window}"
+    probe_threshold       = "${var.probe_threshold}"
+    probe_timeout         = "${var.probe_timeout}"
+    probe_interval        = "${var.probe_interval}"
+    probe_initial         = "${var.probe_initial}"
+    healthcheck_path      = "${var.healthcheck_path}"
   }
 }

@@ -59,26 +59,38 @@ variable "ssl_check_cert" {
   default     = "always"
 }
 
-variable "probe_window" {
-  description = ""
-  type        = "string"
-  default     = "5"
-}
-
 variable "probe_threshold" {
-  description = ""
+  description = "Along with the probe_window, the number of successes per total number health checks. For example, specifying 1/2 means 1 out of 2 checks must pass to be reported as healthy."
   type        = "string"
   default     = "1"
 }
 
-variable "probe_timeout" {
-  description = ""
+variable "probe_window" {
+  description = "See the description for probe_threshold above. Default is based on Fastly's \"Low\" option - see https://docs.fastly.com/guides/basic-configuration/health-check-frequency."
   type        = "string"
-  default     = "2s"
+  default     = "2"
 }
 
 variable "probe_initial" {
-  description = ""
+  description = "The number of requests to assume as passing on deploy. Default is based on Fastly's \"Low\" option - see https://docs.fastly.com/guides/basic-configuration/health-check-frequency."
   type        = "string"
-  default     = "5"
+  default     = "1"
+}
+
+variable "probe_interval" {
+  description = "The period of time for the requests to run. Default is based on Fastly's \"Low\" option - see https://docs.fastly.com/guides/basic-configuration/health-check-frequency."
+  type        = "string"
+  default     = "60s"
+}
+
+variable "probe_timeout" {
+  description = "The wait time until request is considered failed. Default is based on Fastly's \"Low\" option - see https://docs.fastly.com/guides/basic-configuration/health-check-frequency."
+  type        = "string"
+  default     = "5s"
+}
+
+variable "healthcheck_path" {
+  description = "Path to visit on your origins when performing the check."
+  type        = "string"
+  default     = "/internal/healthcheck"
 }

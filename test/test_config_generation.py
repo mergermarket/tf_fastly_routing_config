@@ -59,11 +59,11 @@ class TestConfigGeneration(unittest.TestCase):
                     \.ssl_check_cert = always ;
                     \.probe = \{
                         \.request = "HEAD \s /internal/healthcheck HTTP/1.1" \s "Connection: \s close";
-                        \.window = 5 ;
+                        \.window = 2 ;
                         \.threshold = 1 ;
-                        \.timeout = 2s ;
-                        \.initial = 5 ;
-                        \.dummy = true ;
+                        \.timeout = 5s ;
+                        \.initial = 1 ;
+                        \.interval = 60s ;
                     \}
                 \}
             '''), re.X)
@@ -88,11 +88,11 @@ class TestConfigGeneration(unittest.TestCase):
                     \.ssl_check_cert = always ;
                     \.probe = \{
                         \.request = "HEAD \s /internal/healthcheck HTTP/1.1" \s "Connection: \s close";
-                        \.window = 5 ;
+                        \.window = 2 ;
                         \.threshold = 1 ;
-                        \.timeout = 2s ;
-                        \.initial = 5 ;
-                        \.dummy = true ;
+                        \.timeout = 5s ;
+                        \.initial = 1 ;
+                        \.interval = 60s ;
                     \}
                 \}
             '''), re.X)
@@ -116,11 +116,11 @@ class TestConfigGeneration(unittest.TestCase):
                     \.ssl_check_cert = never ;
                     \.probe = \{
                         \.request = "HEAD \s /internal/healthcheck HTTP/1.1" \s "Connection: \s close";
-                        \.window = 5 ;
+                        \.window = 2 ;
                         \.threshold = 1 ;
-                        \.timeout = 2s ;
-                        \.initial = 5 ;
-                        \.dummy = true ;
+                        \.timeout = 5s ;
+                        \.initial = 1 ;
+                        \.interval = 60s ;
                     \}
                 \}
             '''), re.X)
