@@ -4,7 +4,7 @@ data "template_file" "vcl_recv" {
             set req.backend = $${backend_name};
             if (req.request == "HEAD" || req.request == "GET" || req.request == "FASTLYPURGE") {
                 return(lookup);
-            else {
+            } else {
                 return(pass);
             }
         }

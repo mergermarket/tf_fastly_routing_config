@@ -38,7 +38,7 @@ class TestConfigGeneration(unittest.TestCase):
                     set req\.backend \= test-backend\;
                     if \(req\.request == "HEAD" \|\| req\.request == "GET" \|\| req\.request == "FASTLYPURGE"\) \{
                         return\(lookup\);
-                    else \{
+                    \} else \{
                         return\(pass\);
                     \}
                 \}
