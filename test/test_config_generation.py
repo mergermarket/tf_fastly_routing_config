@@ -64,6 +64,7 @@ class TestConfigGeneration(unittest.TestCase):
                         \.timeout = 5s ;
                         \.initial = 1 ;
                         \.interval = 60s ;
+                        \.dummy = true ;
                     \}
                 \}
             '''), re.X)
@@ -93,6 +94,7 @@ class TestConfigGeneration(unittest.TestCase):
                         \.timeout = 5s ;
                         \.initial = 1 ;
                         \.interval = 60s ;
+                        \.dummy = true ;
                     \}
                 \}
             '''), re.X)
@@ -121,6 +123,7 @@ class TestConfigGeneration(unittest.TestCase):
                         \.timeout = 5s ;
                         \.initial = 1 ;
                         \.interval = 60s ;
+                        \.dummy = true ;
                     \}
                 \}
             '''), re.X)

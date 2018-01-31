@@ -59,6 +59,12 @@ variable "ssl_check_cert" {
   default     = "always"
 }
 
+variable "probe_enabled" {
+  description = "Whether the backend should be probed."
+  type        = "string"
+  default     = "false"
+}
+
 variable "probe_threshold" {
   description = "Along with the probe_window, the number of successes per total number health checks. For example, specifying 1/2 means 1 out of 2 checks must pass to be reported as healthy."
   type        = "string"
