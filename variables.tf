@@ -49,6 +49,12 @@ variable "backend_host" {
   type        = "string"
 }
 
+variable "ssl_cert_hostname" {
+  description = "The hostname to use to validate the backend certificate - defaults to backend_host if not set."
+  type        = "string"
+  default     = ""
+}
+
 variable "ssl_ca_cert" {
   description = "SSL CA certificate in PEM format to validate the backend cert against"
   default     = ""

@@ -28,7 +28,7 @@ data "template_file" "vcl_backend" {
             .host = "$${backend_host}";
 
             .ssl = true;
-            .ssl_cert_hostname = "$${backend_host}";
+            .ssl_cert_hostname = "$${ssl_cert_hostname}";
             $${ssl_ca_cert_section}
             .ssl_check_cert = $${ssl_check_cert};
             .probe = {
@@ -60,6 +60,7 @@ END
         "))
     }"
 
+    ssl_cert_hostname     = "${var.ssl_cert_hostname == "" ? var.backend_host : var.ssl_cert_hostname}"
     ssl_check_cert        = "${var.ssl_check_cert}"
 
     probe_window          = "${var.probe_window}"
