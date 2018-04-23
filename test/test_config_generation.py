@@ -34,13 +34,8 @@ class TestConfigGeneration(unittest.TestCase):
             self.output,
             re.compile(optional_whitespace(r'''
                 defaults_vcl_recv =
-                if \( test-cond \) \{
+                if \( req.backend == F_default_backend && \( test-cond \) \) \{
                     set req\.backend \= test-backend\;
-                    if \(req\.request == "HEAD" \|\| req\.request == "GET" \|\| req\.request == "FASTLYPURGE"\) \{
-                        return\(lookup\);
-                    \} else \{
-                        return\(pass\);
-                    \}
                 \}
             '''), re.X)
         )
