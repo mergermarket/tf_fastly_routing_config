@@ -55,6 +55,7 @@ class TestConfigGeneration(unittest.TestCase):
                     \.port = "443" ;
                     \.host = "test-host" ;
                     \.ssl = true ;
+                    \.ssl_sni_hostname = "test-host" ;
                     \.ssl_cert_hostname = "test-host" ;
                     \.ssl_check_cert = always ;
                     \.probe = \{
@@ -84,6 +85,7 @@ class TestConfigGeneration(unittest.TestCase):
                     \.port = "443" ;
                     \.host = "dummy-host" ;
                     \.ssl = true ;
+                    \.ssl_sni_hostname = "dummy-host" ;
                     \.ssl_cert_hostname = "dummy-host" ;
                     \.ssl_ca_cert = \{"line 1\nline 2\nline 3\n"\} ;
                     \.ssl_check_cert = always ;
@@ -114,6 +116,7 @@ class TestConfigGeneration(unittest.TestCase):
                     \.port = "443" ;
                     \.host = "dummy-host" ;
                     \.ssl = true ;
+                    \.ssl_sni_hostname = "dummy-host" ;
                     \.ssl_cert_hostname = "dummy-host" ;
                     \.ssl_check_cert = never ;
                     \.probe = \{

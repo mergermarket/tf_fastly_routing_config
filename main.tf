@@ -23,6 +23,7 @@ data "template_file" "vcl_backend" {
             .host = "$${backend_host}";
 
             .ssl = true;
+            .ssl_sni_hostname = "$${ssl_cert_hostname}";
             .ssl_cert_hostname = "$${ssl_cert_hostname}";
             $${ssl_ca_cert_section}
             .ssl_check_cert = $${ssl_check_cert};
