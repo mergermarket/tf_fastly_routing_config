@@ -11,7 +11,7 @@ def optional_whitespace(pattern):
     Replaces whitespace in the provided pattern with a pattern that matches
     optional whitespace.
     '''
-    return re.sub(r'\s+', r'\s*', pattern)
+    return re.sub(r'[ \n]+', r'[ \n]*', pattern)
 
 class TestConfigGeneration(unittest.TestCase):
 
