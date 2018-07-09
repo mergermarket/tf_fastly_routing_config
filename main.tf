@@ -23,7 +23,7 @@ data "template_file" "vcl_backend" {
             .host = "$${backend_host}";
 
             .ssl = true;
-            .ssl_sni_hostname = "$${ssl_cert_hostname}";
+            $${ssl_sni_hostname_section}
             .ssl_cert_hostname = "$${ssl_cert_hostname}";
             $${ssl_ca_cert_section}
             .ssl_check_cert = $${ssl_check_cert};
@@ -49,6 +49,12 @@ END
     max_connections       = "${var.max_connections}"
     backend_port          = "${var.backend_port}"
     backend_host          = "${var.backend_host}"
+
+    ssl_sni_hostname_section = "${
+        var.ssl_sni_hostname == "" ? "" : join("", list("
+            .ssl_sni_hostname = \"", var.ssl_sni_hostname, "\";
+        "))
+    }"
 
     ssl_ca_cert_section   = "${
         var.ssl_ca_cert == "" ? "" : join("", list("

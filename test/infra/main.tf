@@ -51,3 +51,19 @@ module "ssl_check_cert" {
 output "ssl_check_cert_vcl_backend" {
   value = "${module.ssl_check_cert.vcl_backend}"
 }
+
+# ssl_sni_hostname
+
+variable "ssl_sni_hostname" {}
+
+module "ssl_sni_hostname" {
+  source = "../.."
+  vcl_recv_condition = "dummy-vcl-recv-condition"
+  backend_name = "dummy-backend"
+  backend_host = "dummy-host"
+  ssl_sni_hostname  = "${var.ssl_sni_hostname}"
+}
+
+output "ssl_sni_hostname_vcl_backend" {
+  value = "${module.ssl_sni_hostname.vcl_backend}"
+}

@@ -55,6 +55,12 @@ variable "ssl_cert_hostname" {
   default     = ""
 }
 
+variable "ssl_sni_hostname" {
+  description = "Value to send to backend in SNI - default is blank, meaning no hostname is sent (generally should either be ssl_cert_hostname or the host the user is requesting)."
+  type        = "string"
+  default     = ""
+}
+
 variable "ssl_ca_cert" {
   description = "SSL CA certificate in PEM format to validate the backend cert against"
   default     = ""
