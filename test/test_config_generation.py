@@ -25,6 +25,7 @@ class TestConfigGeneration(unittest.TestCase):
             '-var', 'defaults_backend_host=test-host',
             '-var', 'ssl_ca_cert=line 1\nline 2\nline 3\n',
             '-var', 'ssl_check_cert=never',
+            '-var', 'ssl_sni_hostname=test-sni.hostname',
             'test/infra'
         ]).decode('utf-8')
 
@@ -55,7 +56,6 @@ class TestConfigGeneration(unittest.TestCase):
                     \.port = "443" ;
                     \.host = "test-host" ;
                     \.ssl = true ;
-                    \.ssl_sni_hostname = "test-host" ;
                     \.ssl_cert_hostname = "test-host" ;
                     \.ssl_check_cert = always ;
                     \.probe = \{
@@ -85,7 +85,6 @@ class TestConfigGeneration(unittest.TestCase):
                     \.port = "443" ;
                     \.host = "dummy-host" ;
                     \.ssl = true ;
-                    \.ssl_sni_hostname = "dummy-host" ;
                     \.ssl_cert_hostname = "dummy-host" ;
                     \.ssl_ca_cert = \{"line 1\nline 2\nline 3\n"\} ;
                     \.ssl_check_cert = always ;
@@ -116,9 +115,38 @@ class TestConfigGeneration(unittest.TestCase):
                     \.port = "443" ;
                     \.host = "dummy-host" ;
                     \.ssl = true ;
-                    \.ssl_sni_hostname = "dummy-host" ;
                     \.ssl_cert_hostname = "dummy-host" ;
                     \.ssl_check_cert = never ;
+                    \.probe = \{
+                        \.request = "HEAD \s /internal/healthcheck HTTP/1.1" \s "Connection: \s close";
+                        \.window = 2 ;
+                        \.threshold = 1 ;
+                        \.timeout = 5s ;
+                        \.initial = 1 ;
+                        \.interval = 60s ;
+                        \.dummy = true ;
+                    \}
+                \}
+            '''), re.X)
+        )
+
+    def test_ssl_sni_hostname(self):
+        self.assertRegexpMatches(
+            self.output,
+            re.compile(optional_whitespace(r'''
+                ssl_sni_hostname_vcl_backend =
+                backend dummy-backend \{
+                    \.connect_timeout = 5s ;
+                    \.dynamic = true ;
+                    \.first_byte_timeout = 20s ;
+                    \.between_bytes_timeout = 20s ;
+                    \.max_connections = 1000 ;
+                    \.port = "443" ;
+                    \.host = "dummy-host" ;
+                    \.ssl = true ;
+                    \.ssl_sni_hostname = "test-sni.hostname" ;
+                    \.ssl_cert_hostname = "dummy-host" ;
+                    \.ssl_check_cert = always ;
                     \.probe = \{
                         \.request = "HEAD \s /internal/healthcheck HTTP/1.1" \s "Connection: \s close";
                         \.window = 2 ;
